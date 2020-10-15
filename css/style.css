@@ -1,0 +1,643 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Permanent+Marker&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    background-color: #3c1053;
+}
+
+header{
+    width: 100%;
+}
+
+.header .main{
+    width: 90%;
+    margin: 0 auto;
+    
+}
+
+.navbar{
+    margin-top: 30px;
+}
+
+.navbar .logo{
+    display: flex;
+    margin: 20px 70px;
+    color: #78a841;
+}
+
+.navbar .logo i{
+    font-size: 2.2em;
+}
+
+.navbar .logo h3{
+    font-size: 1.2em;
+    margin: 5px 5px;
+}
+
+.menu ul{
+    display: flex;
+    justify-content: flex-end;
+    margin: -45px 20px;
+}
+
+.menu ul li{
+    list-style: none;
+    margin-right: 60px;
+}
+
+.menu ul li a:hover{
+    font-weight: bold;
+    color: #78a841;
+}
+
+.menu ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.1em;
+}
+
+.menu .submenu{
+    /*display: none;*/
+    position: absolute;
+    margin-top: 5%;
+}
+
+.menu .submenu ul{
+    flex-direction: column;
+}
+
+.navbar .toggle-menu{
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px;
+}
+
+.navbar .toggle-menu i{
+    font-size: 1.8em;
+    cursor: pointer;
+    color: #fff;
+    display: none;
+}
+
+@media (max-width: 570px){
+    .navbar .toggle-menu i{
+        display: block;
+        margin: -55px -15px;
+    }
+
+    .navbar .menu ul{
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background-color: #3c1053;
+        position: fixed;
+        margin-top: 30px;
+        transform: translateX(-110%);
+        transition: 0.4s ease-in;
+    }
+    .navbar .menu .menu-on{
+        transform: translateX(-3%);
+    }
+
+    .navbar .menu ul li{
+        margin: 30px;
+        text-transform: uppercase;
+    }
+
+    .tienda .tabla table tr, 
+    .generos .tablaJuegos table tr{
+        display: flex;
+        flex-direction: column;
+        border: 3px solid #78a841; 
+        padding: 1em;
+        margin-bottom: 1em;
+    }
+
+    
+    .tienda table,
+    .generos .tablaJuegos table{
+        width: 90%;
+    }
+
+    body{
+        margin-left: -40px;
+    }
+
+    .tienda .tabla thead, 
+    .generos .tablaJuegos table thead{
+        display: none;
+    }
+
+    .tienda .tabla td[data-titulo]{
+        display: flex;
+    }
+
+    .generos .tablaJuegos table td[data-titulo]{
+        display: flex;
+    }
+
+    .tienda .tabla table td[data-titulo]::before{
+        content: attr(data-titulo);
+        width: 100px;
+        color: #78a841;
+        font-weight: bold;
+    }
+
+    .generos .tablaJuegos table td[data-titulo]::before{
+        content: attr(data-titulo);
+        width: 100px;
+        color: #78a841;
+        font-weight: bold;
+    }
+
+    .generos .listaGeneros{
+        flex-direction: column;
+    }
+
+    .login{
+        width: 160%;
+    }
+    .login .formulario{
+        width: 130%;
+    }
+
+    .login .formulario h1{
+        font-size: 1.3em;
+    }
+
+    .home .seccionDestacados{
+       flex-direction: column;
+       width: 100%;
+    }
+
+    .home  h1{
+        font-size: 1.5em;
+        color: white;
+    }
+   
+}
+
+.home {
+    width: 85%;
+    margin: 100px;
+}
+
+.home .galeriaPortada{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    justify-content: center;
+}
+
+.home .galeriaPortada .item img{
+    width: 75%;
+    height: 100%;
+    transition: 2s;
+}
+
+
+.home .galeriaPortada  .direcciones{
+    width: 75%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 30px;
+    
+}
+
+.home .galeriaPortada  .direcciones a{
+    color: rgb(253, 139, 9);
+    display: inline-block;
+    padding: 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.home .galeriaPortada  .direcciones a:hover{
+    background-color: rgba(0, 0, 0, 0.582);
+    transition: .5s;
+}
+
+.home .item{
+    display: none;
+    transition: 2s;
+}
+
+.item:first-child{
+    display: flex;
+}
+
+
+
+.home .galeriaPortada .barras{
+    position: absolute;
+    bottom: 0;
+    width: 75%;
+    display: flex;
+    justify-content:center;
+    margin-bottom: 15px;
+}
+
+.home .galeriaPortada .barras .barra{
+    cursor: pointer;
+    height: 3px;
+    width: 25px;
+    margin: 0 2px;
+    background: rgb(253, 139, 9);;
+    display: inline-block;
+    margin-left: 3px;
+}
+
+.home .galeriaPortada .barras .active{
+    background-color: rgb(248, 50, 0);
+    height: 5px;
+    width: 30px;
+
+}
+
+.fade{
+    animation-name: fade;
+    animation-duration: 2s;
+}
+
+@keyframes fade {
+    from{opacity: .3;}
+    to{opacity: 1.3;}
+}
+
+.home .seccionDestacados{
+    width: 100%;
+    display: flex;
+}
+
+.home .seccionDestacados .destacado{
+    display: flex;
+    width: 20%;
+    border: 3px solid #78a841;
+    margin: 5px;
+}
+
+.home  h1{
+    font-family: "permanent marker";
+    color: #78a841;
+    font-size: 3.3em;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 30%;
+}
+
+.home .seccionDestacados .destacado img{
+    width: 80%;
+    height: 70%;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+.home .seccionDestacados .destacado img:hover{
+    opacity: 50%;
+    cursor: pointer;
+}
+
+.home .seccionDestacados .destacado .descripcion{
+    color: white;
+    justify-content: center;
+    margin-left: 10%;
+}
+
+.home .seccionDestacados .destacado .descripcion:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.tienda .tabla{
+    margin-left: 7%;
+    margin-top: -50px;
+    width: 90%;
+}
+
+.tienda h1{
+    font-family: "permanent marker";
+    color: #78a841;
+    font-size: 3.0em;
+    margin: 100px 100px;
+}
+.tienda table{
+    border-collapse: collapse;  
+    background-color: #340c49;
+}
+
+.tienda table td{
+    padding: 10px 30px;
+    border: 1px solid #78a841;
+    color: white;
+}
+
+.tienda table thead td{
+    background-color: #250a33;
+    font-weight: bold;
+    color: #78a841;
+    border: 3px solid #78a841;
+}
+
+.tienda .tabla td img{
+    height: 65%;
+    width: 50%;
+}
+
+.tienda .tabla td img:hover{
+    opacity: 50%;
+}
+
+.tienda .tabla td a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.1em;
+}
+.tienda .tabla table tbody tr:hover{
+    background-color: #43145c;
+}
+
+.login{
+    width: 80%;
+    margin: 8% 8%;
+}
+
+.login .formulario{
+    margin-left: 18%;
+    border:6px solid#78a841;
+    border-radius: 30px;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.301);
+    width: 60%;
+    justify-content: center;
+    padding: 10%;
+    padding-bottom: 8%;
+    padding-top: 8%;
+    background-color: #250a33;
+}
+
+.login .formulario h1{
+    margin-top: 6%;
+    margin-bottom: 10%;
+    color: #78a841;
+}
+
+.login .formulario input{
+    width: 100%;
+    height: 40px;
+    border: 3px solid black;
+    border-radius: 8px;
+    font-size: 1.3em;
+    background-color: #93c956;
+}
+
+.login .formulario button{
+    background-color: #7ac426;
+    padding: 10px;
+    width: 130px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 25%;
+    font-family: "Montserrat";
+    font-weight: bold;
+    font-size: 1.0em;
+    cursor: pointer;
+}
+
+.login .formulario button:hover{
+    background-color: #64a020;
+}
+
+.login .formulario .msj-error p{
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: rgb(214, 6, 6);
+}
+
+
+
+
+body .footer{
+    background-color: #250a33;
+    height: 35vh;
+    margin-top: 100px;
+}
+
+body .footer .logo-footer{
+    margin-left: 45%;
+    
+}
+
+body .footer .logo-footer i{
+    color: #78a841;
+    font-size: 4.5em;
+    margin-left: 3%;
+    margin-top: 5%;
+
+}
+
+body .footer .logo-footer h3{
+    color: #78a841;
+}
+
+body .footer .redes{
+    margin-left: 44%;
+    margin-top: 20px;
+}
+
+body .footer .redes i{
+    font-size: 1.8em;
+    color: #78a841;
+    margin: 8px;
+    cursor: pointer;
+}
+
+body .footer .redes i:hover{
+    font-size: 2.0em;
+}
+
+.administrar .tabla,
+.administrar .tablaGeneros{
+    margin-left: 7%;
+    margin-top: 10%;
+    width: 85%;
+}
+
+.administrar .tabla .tabla-admin,
+.administrar .tablaGeneros table{
+    border-collapse: collapse;  
+    background-color: #340c49;
+}
+
+.administrar .tabla .tabla-admin td,
+.administrar .tablaGeneros table td{
+    padding: 10px 30px;
+    border: 1px solid #78a841;
+    color: white;
+}
+
+.administrar .tabla .tabla-admin thead td,
+.administrar .tablaGeneros table thead td{
+    background-color: #250a33;
+    font-weight: bold;
+    color: #78a841;
+    border: 3px solid #78a841;
+}
+
+.administrar .tabla .tabla-admin td img{
+    height: 65%;
+    width: 100%;
+}
+
+.administrar .tabla .tabla-admin td a{
+    text-decoration: none;
+    color: red;
+}
+
+.administrar .formInsert{
+    width: 30%;
+    margin: 5% 5%;
+    border: 3px solid #78a841;
+    justify-content: center;
+    align-items: center;
+    background-color: #250a33;
+}
+
+.administrar .formInsert form{
+    margin-left: 5%;
+}
+
+.administrar .formInsert h3{
+    margin: 2%;
+    color: #78a841;
+}
+
+.administrar .formInsert input{
+    width: 90%;
+}
+
+.administrar .formInsert button{
+    padding: 6px;
+    color: black;
+    background-color:  #78a841;
+    margin-top: 3%;
+    font-family: "Montserrat";
+    font-weight: bold;
+    margin-bottom: 3%;
+}
+
+.generos{
+    width: 100%;
+    
+}
+.generos .listaGeneros{
+    margin: 5% 5%;
+    display: flex;
+    background-color: #250a33;
+}
+
+.generos .listaGeneros li {
+    list-style: none;
+    color: white;
+    margin: 6%;
+    font-size: 1.4em;
+    cursor: pointer;
+}
+
+.generos .listaGeneros li a{
+    text-decoration: none;
+    color: white;
+}
+
+.generos .listaGeneros li a:hover{
+    color: #78a841;
+}
+
+.generos .tablaJuegos{
+    display: flex;
+   margin-left: 20%;
+}
+
+
+
+.generos .tablaJuegos table{
+    border-collapse: collapse;  
+    background-color: #340c49;
+    width: 100%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.generos .tablaJuegos table td{
+    padding: 10px 30px;
+    border: 1px solid #78a841;
+    color: white;
+}
+
+.generos .tablaJuegos table thead td{
+    background-color: #250a33;
+    font-weight: bold;
+    color: #78a841;
+    border: 3px solid #78a841;
+}
+
+.generos .tablaJuegos table td img{
+    height: 60%;
+    width: 70%;
+}
+
+
+.generos .tablaJuegos table td a{
+    text-decoration: none;
+    color: white;
+}
+
+.generos .tablaJuegos table tbody tr:hover{
+    background-color: #43145c;
+}
+
+.generos .tablaJuegos table td img:hover{
+    opacity: 50%;
+}
+
+.administrar .formAddGenero{
+    width: 25%;
+    margin: 5% 5%;
+    border: 3px solid  #78a841;
+    background-color:  #250a33;
+}
+
+.administrar .tablaGeneros table td a{
+    text-decoration: none;
+    color: red;
+}
+
+.administrar .formAddGenero h2,
+.administrar .formAddGenero h3{
+    color: #78a841;
+    margin: 5%;
+}
+
+.administrar .formAddGenero input{
+    margin-bottom: 5%;
+    margin-left: 5%;
+    height: 30px;
+}
+
+.administrar .formAddGenero button{
+    padding: 4px;
+    background-color:  #78a841;
+    font-family: "Montserrat";
+    color: black;
+    font-weight: bold;
+}
