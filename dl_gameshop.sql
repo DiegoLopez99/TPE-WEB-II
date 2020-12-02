@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2020 a las 23:34:02
+-- Tiempo de generación: 03-12-2020 a las 00:10:38
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `dl_gameshop`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentario`
+--
+
+CREATE TABLE `comentario` (
+  `id_comentario` int(11) NOT NULL,
+  `texto` varchar(900) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_juego` int(11) NOT NULL,
+  `puntuacion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`id_comentario`, `texto`, `id_usuario`, `id_juego`, `puntuacion`) VALUES
+(1, 'comentario de prueba', 1, 2, 5),
+(2, 'mermeladaaa', 2, 15, 4);
 
 -- --------------------------------------------------------
 
@@ -41,7 +63,8 @@ INSERT INTO `genero` (`id`, `nombre`) VALUES
 (2, 'Accion'),
 (3, 'Conduccion'),
 (4, 'Aventura'),
-(5, 'Estrategia');
+(5, 'Estrategia'),
+(8, 'Infantiles');
 
 -- --------------------------------------------------------
 
@@ -63,7 +86,7 @@ CREATE TABLE `juego` (
 --
 
 INSERT INTO `juego` (`id`, `nombre`, `precio`, `formato`, `id_genero`, `stock`) VALUES
-(2, 'FIFA 21', 4500, 'Digital', 1, 1),
+(2, 'FIFA 21', 4500, 'Digital', 1, 0),
 (3, 'Mafia Trilogy', 6120, 'Digital', 2, 1),
 (10, 'Sims 4', 4500, 'Fisico', 5, 0),
 (15, 'Call Of Duty Black Ops Cold War', 3800, 'Digital', 2, 1),
@@ -79,11 +102,11 @@ INSERT INTO `juego` (`id`, `nombre`, `precio`, `formato`, `id_genero`, `stock`) 
 (29, 'UFC 4', 6350, 'Fisico', 1, 1),
 (30, 'eFootball PES 2021', 2560, 'Digital', 1, 1),
 (31, 'GTA V', 1130, 'Digital', 2, 1),
-(32, 'Mortal Kombat 11', 4400, 'Fisico', 2, 1),
 (33, 'Red Dead Redemption 2', 3100, 'Fisico', 2, 1),
 (34, 'The Last of Us Part II ', 6400, 'Fisico', 2, 0),
 (35, 'HITMAN The Complete First Season', 1320, 'Digital', 5, 1),
-(37, 'FEAR', 600, 'Fisico', 2, 1);
+(37, 'FEAR', 600, 'Fisico', 2, 1),
+(38, 'Sonic', 1200, 'Digital', 8, 1);
 
 -- --------------------------------------------------------
 
@@ -105,11 +128,20 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `email`, `password`, `admin`) VALUES
 (1, 'diego@gmail.com', '$2y$10$BcX4HeOuhiUTwPHpNlP6A.GycT/N/HkbO7Rd.AVZKSXxzmNZBjGiW', 1),
 (2, 'javi@gmail.com', '$2y$10$IKzG6zJ0CiXLcHlAnSgcD.4Wkwv6zd9MACRzWXjZjn9cJgpXPVMIu', 1),
-(3, 'roberto@gmail.com', '$2y$10$GCfjYhBDb0qh/.55LGw7we42HhhZBBdpTb05g3PWzXKlLA/FAqEHa', 0);
+(3, 'roberto@gmail.com', '$2y$10$GCfjYhBDb0qh/.55LGw7we42HhhZBBdpTb05g3PWzXKlLA/FAqEHa', 0),
+(5, 'mermelada@gmail.com', '$2y$10$1fG0Loz/P1xM5rslOoXpJO2aODzcdSkUsJw/S9LniZBKsME4gCuom', 0);
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD PRIMARY KEY (`id_comentario`),
+  ADD UNIQUE KEY `id_juego` (`id_juego`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `genero`
@@ -135,26 +167,39 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `juego`
 --
 ALTER TABLE `juego`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`id_juego`) REFERENCES `juego` (`id`);
 
 --
 -- Filtros para la tabla `juego`
