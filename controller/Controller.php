@@ -10,6 +10,7 @@
         private $view;
         private $juegosModel;
         private $generosModel;
+        private $usersModel;
 
         function __construct(){
             $this->view = new View();
@@ -42,7 +43,8 @@
             $this->chekAdmin();
             $generos = $this->generosModel->getGeneros();
             $juegos = $this->juegosModel->getJuegos();
-            $this->view->showAdministrar($generos, $juegos);
+            $users = $this->usersModel->getUsers();
+            $this->view->showAdministrar($generos, $juegos, $users);
         }
 
 
@@ -55,6 +57,7 @@
                 if(password_verify($pass, $userDB->password)){
                     session_start();
                     $_SESSION["EMAIL"] = $userDB->email;
+                    $_SESSION["ID"] = $userDB->id;
                     $_SESSION["ADMIN"] = $userDB->admin;
                     if($userDB->admin == 1){
                         header("Location: ".BASE_URL."administrar");
@@ -132,7 +135,65 @@
         function MostrarJuego($params = null){
             $id = $params[':ID'];
             $juego = $this->juegosModel->getJuego($id);
-            $this->view->showJuego($juego);
+            $users = $this->usersModel->getUsers();
+            $this->view->showJuego($juego, $users);
+        }
+
+        function UpdateGame(){
+            $this->chekAdmin();
+            if(isset($_POST['nombre']) && isset($_POST['precio']) && isset($_POST['formato']) && isset($_POST['id_genero']) && isset($_POST['id_juego'])){
+                $this->juegosModel->updateGame($_POST['nombre'], $_POST['precio'], $_POST['formato'], $_POST['id_genero'], $_POST['id_juego']);
+                header("Location: ".BASE_URL."administrar");
+            }else{
+                header("Location: ".BASE_URL."generos");
+            }
+        }
+
+        function UpdateGenero(){
+            $this->chekAdmin();
+            $this->generosModel->updateGenero($_POST['nombre'], $_POST['id_genero']);
+            header("Location: ".BASE_URL."administrar");
+        }
+
+        function EliminarUser($params = null){
+            $id = $params[':ID'];
+            $this->chekAdmin();
+            $this->usersModel->deleteUser($id);
+            header("Location: ".BASE_URL."administrar");
+        }
+
+        function HacerAdmin($params = null){
+            $id = $params[':ID'];
+            $this->chekAdmin();
+            $this->usersModel->hacerAdmin($id);
+            header("Location: ".BASE_URL."administrar");
+        }
+
+        function QuitarAdmin($params = null){
+            $id = $params[':ID'];
+            $this->chekAdmin();
+            $this->usersModel->quitarAdmin($id);
+            header("Location: ".BASE_URL."administrar");
+        }
+
+        function Registro(){
+            $this->view->showRegistro();
+        }
+
+        function RegistrarUser(){
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            if(isset($email) && isset($password)){
+                $hash = password_hash($password, PASSWORD_DEFAULT);
+                $this->usersModel->registrarUser($email, $hash); 
+                $userDB = $this->usersModel->getUser($user);
+                session_start();
+                $_SESSION["EMAIL"] = $userDB->email;
+                $_SESSION["ADMIN"] = $userDB->admin;
+                $_SESSION["ID"] = $userDB->id;
+                header("Location: ".BASE_URL."home");
+            }
+            
         }
     }
 ?>

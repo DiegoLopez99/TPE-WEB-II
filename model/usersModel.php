@@ -13,6 +13,33 @@
             return $sentencia->fetch(PDO::FETCH_OBJ);
         }
 
+        function getUsers(){
+            $sentencia = $this->db->prepare("SELECT * FROM user");
+            $sentencia->execute();
+            return $sentencia->fetchAll(PDO::FETCH_OBJ);
+        }
+
+        function deleteUser($id){
+            $sentencia = $this->db->prepare("DELETE FROM user WHERE id=?");
+            $sentencia->execute(array($id));
+        }
+
+        function hacerAdmin($id){
+            $sentencia = $this->db->prepare("UPDATE user SET admin=1 WHERE id=?");
+            $sentencia->execute(array($id));
+        }
+
+        function quitarAdmin($id){
+            $sentencia = $this->db->prepare("UPDATE user SET admin=0 WHERE id=?");
+            $sentencia->execute(array($id));
+        }
+
+        function registrarUser($email, $hash){
+            $sentencia = $this->db->prepare("INSERT INTO user(email, password) VALUE (?,?)");
+            $sentencia->execute(array($email, $hash));
+        }
+    
+
 
     }
 ?>

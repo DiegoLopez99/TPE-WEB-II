@@ -26,10 +26,11 @@
             $smarty->display('templates/login.tpl');
         }
 
-        function showAdministrar($generos, $juegos){
+        function showAdministrar($generos, $juegos, $users){
             $smarty = new Smarty();
             $smarty->assign('generos', $generos);
             $smarty->assign('juegos', $juegos);
+            $smarty->assign('users', $users);
             $smarty->display('templates/administrar.tpl');
         }
 
@@ -50,10 +51,16 @@
             $smarty->display('templates/tablaJuegoGenero.tpl');
         }
 
-        function showJuego($juego){
+        function showJuego($juego, $users){
             $smarty = new Smarty();
             $smarty ->assign('juego', $juego);
+            $smarty ->assign('users', $users);
             $smarty->display('templates/juego.tpl');
+        }
+
+        function showRegistro(){
+            $smarty = new Smarty();
+            $smarty->display('templates/registro.tpl');
         }
     }
 

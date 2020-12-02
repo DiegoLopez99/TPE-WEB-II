@@ -63,6 +63,29 @@
                 <button type="submit">Agregar</button>
             </form>
         </div>
+        <div class="formUpdateGame">
+            <form action="updateGame" method="get">
+                <h2>Selecione el juego que quiere editar</h2>
+                <select name="id_juego">
+                    {foreach from=$juegos item=juego}
+                    <option value="{$juego->id}">{$juego->nombre}</option>
+                    {/foreach}
+                </select>
+                <h3>Nombre del juego</h3>
+                <input name="nombre">
+                <h3>Precio</h3>
+                <input type="number" name="precio">
+                <h3>Formato</h3>
+                <input name="formato">
+                <h3>Genero</h3>
+                <select name="id_genero">
+                    {foreach from=$generos item=genero}
+                    <option value="{$genero->id}">{$genero->nombre}</option>
+                    {/foreach}
+                </select>
+                <button type="submit">Editar</button>
+            </form>
+        </div>
         <div class="admin-generos">
             <div class="tablaGeneros">
                 <table>
@@ -91,6 +114,51 @@
                     <input name="nombre">
                     <button type="submit">Agregar</button>
                 </form>
+            </div>
+            <div class="formUpdateGenero">
+                <form action="updateGenero" method="get">
+                    <h2>Selecione el genero que quiere editar</h2>
+                    <select name="id_genero">
+                        {foreach from=$generos item=genero}
+                        <option value="{$genero->id}">{$genero->nombre}</option>
+                        {/foreach}
+                    </select>
+                    <h3>Nombre del genero</h3>
+                    <input name="nombre">
+                    <button type="submit">Editar</button>
+                </form>
+            </div>
+        </div>
+        <div class="admin-users">
+            <div class="tablaGeneros">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Email</td>
+                            <td>Admin</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {foreach from=$users item=user}
+                            <tr>
+                                <td>{$user->email}</td>
+                                {if $user->admin == 0}
+                                    <td>No</td>
+                                {else}
+                                <td>Si</td>
+                                {/if}
+                                <td><a href="eliminarUser/{$user->id}">Eliminar Usuario</a></td>
+                                {if $user->admin == 0}
+                                    <td><a href="hacerAdmin/{$user->id}">Hacer Admin</a></td>
+                                {else}
+                                <td><a href="quitarAdmin/{$user->id}">Quitar Admin</a></td>
+                                {/if}
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

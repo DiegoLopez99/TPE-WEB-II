@@ -10,21 +10,15 @@
 </head>
 <body>
 {include file="header.tpl"}
-    <div class="login">
+    <div class="registro">
         <div class="formulario">
-            <form action="verifyUser" method="post">
+            <form action="registrarUser" method="post">
                 <h1>Email:</h1>
-                <input name="input_user">
+                <input name="email">
                 <h1>Contraseña:</h1>
-                <input type="password" name="input_password">
-                <button type="submit">Ingresar</button>
-                {if !$mesagge == ""}
-                <div class="msj-error">
-                    <p>{$mesagge}</p>
-                </div>
-                {/if}
+                <input type="password" name="password">
+                <button type="submit">Registrarse</button>
             </form>
-            <a href="registro">Registrarse</a>
         </div>
     </div>
 {include file="footer.tpl"}

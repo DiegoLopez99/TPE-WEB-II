@@ -6,6 +6,7 @@
     <script src="https://kit.fontawesome.com/7305faff6b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/main.js"></script>
+    <base href="http://{$smarty.server.SERVER_NAME}{dirname($smarty.server.PHP_SELF)}/" target="_self">
     <title>DL GameShop</title>
 </head>
 <body>

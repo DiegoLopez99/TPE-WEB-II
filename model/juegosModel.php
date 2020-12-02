@@ -53,6 +53,11 @@
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
 
+        function updateGame($nombre, $precio, $formato, $id_genero, $id_juego){
+            $sentencia = $this->db->prepare("UPDATE juego SET nombre=?, precio=?, formato=?, id_genero=? WHERE id=?)");
+            $sentencia->execute(array($nombre, $precio, $formato, $id_genero, $id_juego));
+        }
+
         
     }
 

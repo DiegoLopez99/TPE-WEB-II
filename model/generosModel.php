@@ -20,8 +20,13 @@
         }
 
         function addGenero($nombre){
-            $sentencia= $this->db->prepare("INSERT INTO genero(nombre) VALUE (?)");
+            $sentencia = $this->db->prepare("INSERT INTO genero(nombre) VALUE (?)");
             $sentencia->execute(array($nombre));
+        }
+
+        function updateGenero($nombre, $id_genero){
+            $sentencia = $this->db->prepare("UPDATE genero SET nombre=? WHERE id=?");
+            $sentencia->execute(array($nombre, $id_genero));
         }
 
     }

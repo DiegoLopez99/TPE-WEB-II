@@ -24,6 +24,14 @@
     $r->addRoute("eliminarGenero/:ID", "GET", "Controller", "EliminarGenero");
     $r->addRoute("addGenero", "POST", "Controller", "AddGenero");
     $r->addRoute("juego/:ID", "GET", "Controller", "MostrarJuego");
+    $r->addRoute("updateGame", "GET", "Controller", "UpdateGame");
+    $r->addRoute("updateGenero", "GET", "Controller", "UpdateGenero");
+    $r->addRoute("eliminarUser/:ID", "GET", "Controller", "EliminarUser");
+    $r->addRoute("hacerAdmin/:ID", "GET", "Controller", "HacerAdmin");
+    $r->addRoute("quitarAdmin/:ID", "GET", "Controller", "QuitarAdmin");
+    $r->addRoute("registro", "GET", "Controller", "Registro");
+    $r->addRoute("registrarUser", "POST", "Controller", "RegistrarUser");
+
 
     //Ruta por defecto.
     $r->setDefaultRoute("Controller", "Home");

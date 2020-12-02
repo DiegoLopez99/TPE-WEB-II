@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/main.js"></script> 
     <title>DL GameShop</title>
+    <base href="http://{$smarty.server.SERVER_NAME}{dirname($smarty.server.PHP_SELF)}/" target="_self">
 </head>
 <body>
 {include file="header.tpl"}
